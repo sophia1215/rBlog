@@ -26,7 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
-
+# paginator
+gem 'kaminari'
 gem 'annotate'
 gem 'rails_refactor'
 gem 'has_scope'
