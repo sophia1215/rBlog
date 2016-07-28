@@ -1,4 +1,4 @@
-class VisitorCommentService
+class VisitorMessageService
   attr_reader :params
 
   def initialize(params)
@@ -6,7 +6,7 @@ class VisitorCommentService
   end
 
   def visitor
-    build_existing_visitor_comment || build_new_visitor_comment
+    build_existing_visitor_message || build_new_visitor_message
   end
 
   private
@@ -15,18 +15,18 @@ class VisitorCommentService
     @visitor ||= Visitor.find_by(email: params[:email])
   end
 
-  def build_new_visitor_comment
+  def build_new_visitor_message
     Visitor.new(params)
   end
 
-  def comment
-    params[:comments_attributes]['0']
+  def message
+    params[:messages_attributes]['0']
   end
 
-  def build_existing_visitor_comment
+  def build_existing_visitor_message
     return unless existing_visitor
     existing_visitor.tap do |v|
-      v.comments << Comment.new(comment)
+      v.messages << Message.new(message)
     end
   end
 end

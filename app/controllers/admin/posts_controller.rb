@@ -17,6 +17,8 @@ class Admin::PostsController < Admin::ApplicationController
     @post = Post.new(post_params)
     @post.moderator_id = current_moderator.id
 
+    byebug
+
     if @post.save
       redirect_to admin_posts_url, notice: 'Post was successfully created'
     else
@@ -56,5 +58,5 @@ class Admin::PostsController < Admin::ApplicationController
   def post_params
     params.require(:post).permit(:id, :title, :content, :publish, tag_ids: [])
   end
-  
+
 end
